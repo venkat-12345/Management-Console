@@ -879,7 +879,7 @@ export class AppPageComponent implements OnInit, OnDestroy, AfterViewInit {
         var vodUrlName = null;
 
         if (type == "uploadedVod") {
-            srcFile = HTTP_SERVER_ROOT + this.appName + '/streams/' + vodId + '.mp4';
+            srcFile = HTTP_SERVER_ROOT + this.appName + '/streams/' + vodId + '.mkv';
             vodUrlName = vodId;
         } else if (type == "streamVod") {
             srcFile = HTTP_SERVER_ROOT + this.appName + '/streams/' + vodName;
@@ -920,7 +920,7 @@ export class AppPageComponent implements OnInit, OnDestroy, AfterViewInit {
             tokenParam = streamId;
         }
         else if (type == "userVod") {
-            let extensionIndex = name.lastIndexOf(".mp4");
+            let extensionIndex = name.lastIndexOf(".mkv");
             tokenParam = name.substring(0, extensionIndex);
         }
 
@@ -1311,10 +1311,9 @@ export class AppPageComponent implements OnInit, OnDestroy, AfterViewInit {
             });
 
         },
-        error => 
-        {
-           show403Error(error);
-        });
+            error => {
+                show403Error(error);
+            });
 
 
     }
@@ -2077,7 +2076,7 @@ export class AppPageComponent implements OnInit, OnDestroy, AfterViewInit {
     setRecordingStatus(streamId: string, recordingStatus: boolean, recordingType: string): void {
 
         //Check H.264 is disabled
-        if (!this.appSettings.h264Enabled && recordingType == "mp4" && recordingStatus) {
+        if (!this.appSettings.h264Enabled && recordingType == "mkv" && recordingStatus) {
             $.notify({
                 icon: "ti-save",
                 message: "Firstly, please enable H.264 Encoder in App Settings"
